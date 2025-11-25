@@ -11,6 +11,7 @@
     "@types/pg": "^8.15.6",
     "dotenv": "^17.2.3",
     "hono": "^4.10.6",
+    "install": "^0.13.0",
     "pg": "^8.16.3",
     "prisma": "^7.0.1",
     "tsx": "^4.20.6",
@@ -19,5 +20,10 @@
   "devDependencies": {
     "@types/bun": "latest"
   },
-  "type": "module"
+  "type": "module",
+  "module": "src/index.ts",
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
+  }
 }
