@@ -6,7 +6,7 @@
     "strict": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx",
-    "ignoreDeprecations": "6.0"
+    "jsxImportSource": "hono/jsx"
+    // "ignoreDeprecations": "6.0"
   }
 }
