@@ -6,6 +6,17 @@ export const vehiclesRoute = new Hono()
     return c.json(dataVehicles);
   })
 
+  .get("/search", (c) => {
+    const q = c.req.query("q") || "";
+
+    const foundVehicles = dataVehicles.filter((vehicle) => {
+      return vehicle.name.toLowerCase().includes(q.toLowerCase());
+    });
+    console.log(foundVehicles);
+
+    return c.json(foundVehicles);
+  })
+
   .get("/:id", (c) => {
     const id = Number(c.req.param("id"));
 
