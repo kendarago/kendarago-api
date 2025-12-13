@@ -11,12 +11,23 @@ A RESTful API for Kendarago, a web-based application designed to facilitate vehi
 - Production URL: [https://kendarago-api.onrender.com/](https://kendarago-api.onrender.com/)
 - Local URL: [http://localhost:3000](http://localhost:3000)
 
+Rental Company :
+
+| Endpoint                | HTTP  | Description              | Done |
+| ----------------------- | ----- | ------------------------ | ---- |
+| `/rental-companies`     | `GET` | Get all rental companies |      |
+| `/rental-companies/:id` | `GET` | Get rental company by ID |      |
+
 Vehicle :
 
-| Endpoint      | HTTP | Description       | Done |
-| ------------- | ---- | ----------------- | ---- |
-| /vehicles     | GET  | Get all vehicles  |      |
-| /vehicles/:id | GET  | Get vehicle by ID |      |
+| Endpoint        | HTTP  | Description       | Done |
+| --------------- | ----- | ----------------- | ---- |
+| `/vehicles`     | `GET` | Get all vehicles  |      |
+| `/vehicles/:id` | `GET` | Get vehicle by ID |      |
+
+## ERD Diagram
+
+<!-- ![ERD Diagram](/public/erd.png) -->
 
 ## Getting Started
 
