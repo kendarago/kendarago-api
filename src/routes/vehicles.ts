@@ -1,22 +1,21 @@
 import { Hono } from "hono";
-
-const vehicles = [{}];
+import { dataVehicles } from "../../prisma/data/vehicles";
 
 export const vehiclesRoute = new Hono()
   .get("/", (c) => {
-    return c.json(vehicles);
+    return c.json(dataVehicles);
   })
 
-  .get("/:slug", (c) => {
+  .get("/:id", (c) => {
     const id = Number(c.req.param("id"));
 
-    // const vehicle = vehicles.find((vehicle) => {
-    //   return vehicle.id === id;
-    // });
+    const vehicle = dataVehicles.find((vehicle) => {
+      return vehicle.id === id;
+    });
 
-    if (!vehicles) {
+    if (!dataVehicles) {
       return c.notFound();
     }
 
-    return c.json(vehicles);
+    return c.json(vehicle);
   });
