@@ -12,6 +12,8 @@ const apiRoutes = app
   .use("*", logger())
   .use("*", cors())
   .route("/", rootsRoute)
-  .route("/provinces", vehiclesRoute);
+  .route("/vehicles", vehiclesRoute);
 
 export default app;
+
+export type ApiRoutes = typeof apiRoutes;
