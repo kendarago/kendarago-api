@@ -1,31 +1,17 @@
 import { Hono } from "hono";
+import { logger } from "hono/logger";
+import { cors } from "hono/cors";
+
+import { rootsRoute } from "./routes/roots";
+import { vehiclesRoute } from "./routes/vehicles";
 
 const app = new Hono();
 
-const vehicles = [{}];
-
-app.get("/", (c) => {
-  return c.json({
-    message: "Kendarago API",
-  });
-});
-
-app.get("/vehicles", (c) => {
-  return c.json(vehicles);
-});
-
-app.get("/vehicles/:id", (c) => {
-  const id = Number(c.req.param("id"));
-
-  // const vehicle = vehicles.find((vehicle) => {
-  //   return vehicle.id === id;
-  // });
-
-  if (!vehicles) {
-    return c.notFound();
-  }
-
-  return c.json(vehicles);
-});
+const apiRoutes = app
+  .basePath("/")
+  .use("*", logger())
+  .use("*", cors())
+  .route("/", rootsRoute)
+  .route("/provinces", vehiclesRoute);
 
 export default app;
