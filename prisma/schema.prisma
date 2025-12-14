@@ -19,3 +19,38 @@ model User {
   email String @unique
   name  String
 }
+
+model Vehicle {
+  id String @id @default(cuid())
+
+  rentalCompany     RentalCompany? @relation(fields: [rentalCompanySlug], references: [slug])
+  rentalCompanySlug String?
+
+  name           String
+  brand          String
+  fuelType       String
+  transmission   String
+  engineCapacity String
+  imageUrl       String?
+
+  year         Int
+  pricePerDay  Int
+  seatCapacity Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RentalCompany {
+  id   String @id @default(cuid())
+  slug String @unique
+
+  name           String
+  address        String
+  operatingHours String
+
+  vehicles Vehicle[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
