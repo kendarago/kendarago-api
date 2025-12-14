@@ -20,11 +20,36 @@ model User {
   name  String
 }
 
+model RentalCompany {
+  id   String @id @default(cuid())
+  slug String @unique
+
+  name           String
+  address        String
+  operatingHours String
+
+  contact Int
+
+  vehicles Vehicle[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VehicleType {
+  id   String @id @default(cuid())
+  slug String @unique
+
+  name String
+
+  vehicles Vehicle[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Vehicle {
   id String @id @default(cuid())
-
-  rentalCompany     RentalCompany? @relation(fields: [rentalCompanySlug], references: [slug])
-  rentalCompanySlug String?
 
   name           String
   brand          String
@@ -37,20 +62,14 @@ model Vehicle {
   pricePerDay  Int
   seatCapacity Int
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
+  rentalCompany     RentalCompany? @relation(fields: [rentalCompanySlug], references: [slug])
+  rentalCompanySlug String?
 
-model RentalCompany {
-  id   String @id @default(cuid())
-  slug String @unique
-
-  name           String
-  address        String
-  operatingHours String
-
-  vehicles Vehicle[]
+  vehicleType     VehicleType? @relation(fields: [vehicleTypeSlug], references: [slug])
+  vehicleTypeSlug String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// Should we add city?
