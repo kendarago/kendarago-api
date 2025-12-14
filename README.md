@@ -1,4 +1,4 @@
-# Kendarago Backend
+# Kendarago Backend API
 
 A RESTful API for Kendarago, a web-based application designed to facilitate vehicle rentals. Built with Bun, Hono, Prisma, and PostgreSQL.
 
@@ -8,8 +8,9 @@ A RESTful API for Kendarago, a web-based application designed to facilitate vehi
 
 ## REST API Specification
 
-- Production URL: [https://kendarago-api.onrender.com/](https://kendarago-api.onrender.com/)
-- Local URL: [http://localhost:3000](http://localhost:3000)
+- Local: <http://localhost:3000>
+- Production: <https://api.kendarago.com>
+  - Render: <https://kendarago-api.onrender.com>
 
 Rental Company :
 
@@ -125,9 +126,7 @@ If only run the Docker container:
 ```sh
 bun docker:up
 # docker compose up -d
-bun docker:up
-# docker compose up -d
+
 ```
 
-Open <http://localhost:3000>.
 Open <http://localhost:3000>.
