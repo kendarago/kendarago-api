@@ -1,11 +1,13 @@
 import { Hono } from "hono";
 import { dataVehicles } from "../../prisma/data/vehicles";
+import { prisma } from "../lib/prisma";
 
 export const vehiclesRoute = new Hono()
-  .get("/", (c) => {
+  .get("/", async (c) => {
+    const vehicle = await prisma.vehicle.findMany();
     return c.json({
       message: "Get All Vehicles",
-      data: dataVehicles,
+      data: vehicle,
     });
   })
 
