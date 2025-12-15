@@ -1,6 +1,7 @@
 import { prisma } from "../src/lib/prisma";
 import createSlug from "../src/lib/slug";
 import { dataRentalCompanies } from "./data/rental-companies";
+import { dataVehicleTypes } from "./data/vehicle-types";
 
 async function main() {
   for (const seedRentalCompany of dataRentalCompanies) {
@@ -15,6 +16,20 @@ async function main() {
       },
     });
     console.log(`🏬 Rental Companies: ${rentalCompany.name}`);
+  }
+
+  for (const seedVehicleType of dataVehicleTypes) {
+    const slug = createSlug(seedVehicleType.name);
+
+    const vehicleType = await prisma.vehicleType.upsert({
+      where: { slug },
+      update: {},
+      create: {
+        slug,
+        ...seedVehicleType,
+      },
+    });
+    console.log(`🛞 Vehicle Type: ${vehicleType.name}`);
   }
 }
 main()
