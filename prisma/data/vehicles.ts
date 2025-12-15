@@ -1,5 +1,4 @@
 export type Vehicle = {
-  id: number;
   type: "motorcycle" | "car";
   name: string;
   brand: string;
@@ -9,12 +8,13 @@ export type Vehicle = {
   fuelType: "Gas" | "Electric";
   transmission: "Matic" | "Manual";
   engineCapacity: string;
+  rentalCompanySlug: string;
   imageUrl?: string;
 };
 
 export const dataVehicles: Vehicle[] = [
   {
-    id: 1,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Supra X 125",
     brand: "Honda",
@@ -26,7 +26,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "125cc",
   },
   {
-    id: 2,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Revo Fit",
     brand: "Honda",
@@ -38,7 +38,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 3,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Yamaha Mio Sporty",
     brand: "Yamaha",
@@ -50,7 +50,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "115cc",
   },
   {
-    id: 4,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Yamaha Mio M3 125",
     brand: "Yamaha",
@@ -62,7 +62,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "125cc",
   },
   {
-    id: 5,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Yamaha Mio J",
     brand: "Yamaha",
@@ -74,7 +74,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "115cc",
   },
   {
-    id: 6,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Beat Karbu (Old)",
     brand: "Honda",
@@ -86,7 +86,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 7,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Yamaha Soul GT",
     brand: "Yamaha",
@@ -98,7 +98,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "125cc",
   },
   {
-    id: 8,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Beat FI",
     brand: "Honda",
@@ -110,7 +110,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 9,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Vario 110 FI",
     brand: "Honda",
@@ -122,7 +122,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 10,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Beat eSP",
     brand: "Honda",
@@ -134,7 +134,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 11,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Beat Deluxe 2021",
     brand: "Honda",
@@ -146,7 +146,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 12,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Beat Terbaru 2024",
     brand: "Honda",
@@ -158,7 +158,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 13,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Vario 125 Old",
     brand: "Honda",
@@ -170,7 +170,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "125cc",
   },
   {
-    id: 14,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Vario 125 LED",
     brand: "Honda",
@@ -182,7 +182,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "125cc",
   },
   {
-    id: 15,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Vario 150 Keyless",
     brand: "Honda",
@@ -194,7 +194,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "150cc",
   },
   {
-    id: 16,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Genio",
     brand: "Honda",
@@ -206,7 +206,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 17,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Scoopy eSP (Ring 12)",
     brand: "Honda",
@@ -218,7 +218,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 18,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda Scoopy Prestige 2022",
     brand: "Honda",
@@ -230,7 +230,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "110cc",
   },
   {
-    id: 19,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Yamaha Lexi 125",
     brand: "Yamaha",
@@ -242,7 +242,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "125cc",
   },
   {
-    id: 20,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Yamaha Nmax 155 Connected",
     brand: "Yamaha",
@@ -254,7 +254,7 @@ export const dataVehicles: Vehicle[] = [
     engineCapacity: "155cc",
   },
   {
-    id: 21,
+    rentalCompanySlug: "langit-senja",
     type: "motorcycle",
     name: "Honda PCX 160 ABS",
     brand: "Honda",
