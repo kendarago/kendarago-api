@@ -1,5 +1,4 @@
 import { Hono } from "hono";
-import { dataVehicles } from "../../prisma/data/vehicles";
 import { prisma } from "../lib/prisma";
 
 export const vehiclesRoute = new Hono()
@@ -11,12 +10,16 @@ export const vehiclesRoute = new Hono()
     });
   })
 
-  .get("/search", (c) => {
+  .get("/search", async (c) => {
     const q = c.req.query("q") || "";
     const keyword = q.toLowerCase();
 
-    const foundVehicles = dataVehicles.filter((vehicle) => {
-      return vehicle.name.toLowerCase().includes(keyword);
+    const foundVehicles = await prisma.vehicle.findMany({
+      where: {
+        name: {
+          contains: keyword,
+        },
+      },
     });
 
     return c.json({
@@ -32,7 +35,7 @@ export const vehiclesRoute = new Hono()
       where: { id },
     });
 
-    if (!dataVehicles) {
+    if (!vehicle) {
       return c.notFound();
     }
 

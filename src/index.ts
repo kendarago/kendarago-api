@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 
 import { rootRoute } from "./routes/root";
 import { vehiclesRoute } from "./routes/vehicles";
+import { rentalCompaniesRoute } from "./routes/rental-companies";
 
 const app = new Hono();
 
@@ -12,7 +13,8 @@ const apiRoutes = app
   .use("*", logger())
   .use("*", cors())
   .route("/", rootRoute)
-  .route("/vehicles", vehiclesRoute);
+  .route("/vehicles", vehiclesRoute)
+  .route("/rental-companies", rentalCompaniesRoute);
 
 export default app;
 
