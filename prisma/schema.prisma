@@ -61,11 +61,11 @@ model Vehicle {
   pricePerDay  Int
   seatCapacity Int
 
-  rentalCompany     RentalCompany? @relation(fields: [rentalCompanySlug], references: [slug])
-  rentalCompanySlug String?
+  rentalCompany     RentalCompany @relation(fields: [rentalCompanySlug], references: [slug])
+  rentalCompanySlug String
 
-  vehicleType     VehicleType? @relation(fields: [vehicleTypeSlug], references: [slug])
-  vehicleTypeSlug String?
+  vehicleType     VehicleType @relation(fields: [vehicleTypeSlug], references: [slug])
+  vehicleTypeSlug String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
