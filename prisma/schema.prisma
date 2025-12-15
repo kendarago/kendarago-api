@@ -27,8 +27,7 @@ model RentalCompany {
   name           String
   address        String
   operatingHours String
-
-  contact Int
+  contact        String
 
   vehicles Vehicle[]
 
