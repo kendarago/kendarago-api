@@ -14,19 +14,18 @@ A RESTful API for Kendarago, a web-based application designed to facilitate vehi
 
 `rental-companies` :
 
-| Endpoint          | HTTP  | Description                         | Done |
-| ----------------- | ----- | ----------------------------------- | ---- |
-| `/`               | `GET` | Get all rental companies            |      |
-| `/:slug`          | `GET` | Get rental company by Slug          |      |
-| `/:slug/vehicles` | `GET` | Get vehicles by Rental Company Slug |      |
+| Endpoint | HTTP  | Description                                 | Done |
+| -------- | ----- | ------------------------------------------- | ---- |
+| `/`      | `GET` | Get all rental companies                    | ✅   |
+| `/:slug` | `GET` | Get rental company by Slug and its vehicles | ✅   |
 
 `vehicles` :
 
 | Endpoint        | HTTP  | Description         | Done |
 | --------------- | ----- | ------------------- | ---- |
-| `/`             | `GET` | Get all vehicles    |      |
-| `/:id`          | `GET` | Get vehicle by ID   |      |
-| `/search?q=`    | `GET` | Get vehicle by Name |      |
+| `/`             | `GET` | Get all vehicles    | ✅   |
+| `/:id`          | `GET` | Get vehicle by ID   | ✅   |
+| `/search?q=`    | `GET` | Get vehicle by Name | ✅   |
 | `/search?type=` | `GET` | Get vehicle by Type |      |
 
 `types` :
