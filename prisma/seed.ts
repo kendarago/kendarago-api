@@ -1,7 +1,9 @@
 import { prisma } from "../src/lib/prisma";
 import createSlug from "../src/lib/slug";
+
 import { dataRentalCompanies } from "./data/rental-companies";
 import { dataVehicleTypes } from "./data/vehicle-types";
+import { dataVehicles } from "./data/vehicles";
 
 async function main() {
   for (const seedRentalCompany of dataRentalCompanies) {
@@ -30,6 +32,13 @@ async function main() {
       },
     });
     console.log(`🛞 Vehicle Type: ${vehicleType.name}`);
+  }
+
+  for (const seedVehicle of dataVehicles) {
+    const vehicle = await prisma.vehicle.create({
+      data: seedVehicle,
+    });
+    console.log(`🏎️ Vehicle: ${vehicle.name}`);
   }
 }
 main()
