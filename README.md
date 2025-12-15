@@ -12,19 +12,29 @@ A RESTful API for Kendarago, a web-based application designed to facilitate vehi
 - Production: <https://api.kendarago.com>
   - Render: <https://kendarago-api.onrender.com>
 
-Rental Company :
+`rental-companies` :
 
-| Endpoint                | HTTP  | Description              | Done |
-| ----------------------- | ----- | ------------------------ | ---- |
-| `/rental-companies`     | `GET` | Get all rental companies |      |
-| `/rental-companies/:id` | `GET` | Get rental company by ID |      |
+| Endpoint          | HTTP  | Description                         | Done |
+| ----------------- | ----- | ----------------------------------- | ---- |
+| `/`               | `GET` | Get all rental companies            |      |
+| `/:slug`          | `GET` | Get rental company by Slug          |      |
+| `/:slug/vehicles` | `GET` | Get vehicles by Rental Company Slug |      |
 
-Vehicle :
+`vehicles` :
 
-| Endpoint        | HTTP  | Description       | Done |
-| --------------- | ----- | ----------------- | ---- |
-| `/vehicles`     | `GET` | Get all vehicles  |      |
-| `/vehicles/:id` | `GET` | Get vehicle by ID |      |
+| Endpoint        | HTTP  | Description         | Done |
+| --------------- | ----- | ------------------- | ---- |
+| `/`             | `GET` | Get all vehicles    |      |
+| `/:id`          | `GET` | Get vehicle by ID   |      |
+| `/search?q=`    | `GET` | Get vehicle by Name |      |
+| `/search?type=` | `GET` | Get vehicle by Type |      |
+
+`types` :
+
+| Endpoint | HTTP  | Description              | Done |
+| -------- | ----- | ------------------------ | ---- |
+| `/`      | `GET` | Get all types            |      |
+| `/:slug` | `GET` | Get vehicle type by Slug |      |
 
 ## ERD Diagram
 
