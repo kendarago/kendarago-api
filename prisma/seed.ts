@@ -1,6 +1,5 @@
 import { prisma } from "../src/lib/prisma";
 import createSlug from "../src/lib/slug";
-
 import { dataRentalCompanies } from "./data/rental-companies";
 
 async function main() {
@@ -15,7 +14,7 @@ async function main() {
         ...seedRentalCompany,
       },
     });
-    console.log(`🗺️ Rental Companies: ${rentalCompany.name}`);
+    console.log(`🏬 Rental Companies: ${rentalCompany.name}`);
   }
 }
 main()
