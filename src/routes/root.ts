@@ -6,7 +6,9 @@ export const rootRoute = new Hono().get("/", (c) => {
     description:
       "A backend API for Kendarago, a web-based application designed to facilitate vehicle rentals. Built with Bun, Hono, Prisma, and PostgreSQL.",
     path: {
-      schools: "/vehicles",
+      rentalCompanies: "/rental-company",
+      vehicleTypes: "/vehicle-types",
+      vehicles: "/vehicles",
     },
   });
 });
