@@ -4,10 +4,10 @@ import { prisma } from "../lib/prisma";
 
 export const vehiclesRoute = new Hono()
   .get("/", async (c) => {
-    const vehicle = await prisma.vehicle.findMany();
+    const vehicles = await prisma.vehicle.findMany();
     return c.json({
       message: "Get All Vehicles",
-      data: vehicle,
+      data: vehicles,
     });
   })
 
@@ -25,11 +25,11 @@ export const vehiclesRoute = new Hono()
     });
   })
 
-  .get("/:id", (c) => {
-    const id = Number(c.req.param("id"));
+  .get("/:id", async (c) => {
+    const id = c.req.param("id");
 
-    const vehicle = dataVehicles.find((vehicle) => {
-      return vehicle.id === id;
+    const vehicle = await prisma.vehicle.findUnique({
+      where: { id },
     });
 
     if (!dataVehicles) {
