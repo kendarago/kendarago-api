@@ -1,12 +1,7 @@
 import { Hono } from "hono";
+import { Scalar } from "@scalar/hono-api-reference";
 
-export const rootsRoute = new Hono().get("/", (c) => {
-  return c.json({
-    message: "Kendarago API",
-    description:
-      "A backend API for Kendarago, a web-based application designed to facilitate vehicle rentals. Built with Bun, Hono, Prisma, and PostgreSQL.",
-    path: {
-      schools: "/vehicles",
-    },
-  });
-});
+export const rootsRoute = new Hono().get(
+  "/",
+  Scalar({ url: "/scalar", title: "Kendarago API", theme: "kepler" }),
+);
