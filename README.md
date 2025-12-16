@@ -1,4 +1,4 @@
-# Kendarago Backend
+# Kendarago Backend API
 
 A RESTful API for Kendarago, a web-based application designed to facilitate vehicle rentals. Built with Bun, Hono, Prisma, and PostgreSQL.
 
@@ -8,22 +8,32 @@ A RESTful API for Kendarago, a web-based application designed to facilitate vehi
 
 ## REST API Specification
 
-- Production URL: [https://kendarago-api.onrender.com/](https://kendarago-api.onrender.com/)
-- Local URL: [http://localhost:3000](http://localhost:3000)
+- Local: <http://localhost:3000>
+- Production: <https://api.kendarago.com>
+  - Render: <https://kendarago-api.onrender.com>
 
-Rental Company :
+`rental-companies` :
 
-| Endpoint                | HTTP  | Description              | Done |
-| ----------------------- | ----- | ------------------------ | ---- |
-| `/rental-companies`     | `GET` | Get all rental companies |      |
-| `/rental-companies/:id` | `GET` | Get rental company by ID |      |
+| Endpoint | HTTP  | Description                                 | Done |
+| -------- | ----- | ------------------------------------------- | ---- |
+| `/`      | `GET` | Get all rental companies                    | ✅   |
+| `/:slug` | `GET` | Get rental company by Slug and its vehicles | ✅   |
 
-Vehicle :
+`vehicles` :
 
-| Endpoint        | HTTP  | Description       | Done |
-| --------------- | ----- | ----------------- | ---- |
-| `/vehicles`     | `GET` | Get all vehicles  |      |
-| `/vehicles/:id` | `GET` | Get vehicle by ID |      |
+| Endpoint        | HTTP  | Description         | Done |
+| --------------- | ----- | ------------------- | ---- |
+| `/`             | `GET` | Get all vehicles    | ✅   |
+| `/:id`          | `GET` | Get vehicle by ID   | ✅   |
+| `/search?q=`    | `GET` | Get vehicle by Name | ✅   |
+| `/search?type=` | `GET` | Get vehicle by Type |      |
+
+`types` :
+
+| Endpoint | HTTP  | Description              | Done |
+| -------- | ----- | ------------------------ | ---- |
+| `/`      | `GET` | Get all types            |      |
+| `/:slug` | `GET` | Get vehicle type by Slug |      |
 
 ## ERD Diagram
 
@@ -125,9 +135,7 @@ If only run the Docker container:
 ```sh
 bun docker:up
 # docker compose up -d
-bun docker:up
-# docker compose up -d
+
 ```
 
-Open <http://localhost:3000>.
 Open <http://localhost:3000>.
