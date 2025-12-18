@@ -39,6 +39,7 @@ import { rootsRoute } from "./routes/root";
 import { vehiclesRoute } from "./routes/vehicles";
 import { rentalCompaniesRoute } from "./routes/rental-companies";
 import { userRoute } from "./routes/user";
+import { authRoute } from "./routes/auth";
 
 const app = new OpenAPIHono();
 
@@ -52,6 +53,7 @@ app.route("/", rootsRoute);
 app.route("/vehicles", vehiclesRoute);
 app.route("/rental-companies", rentalCompaniesRoute);
 app.route("/users", userRoute);
+app.route("/auth", authRoute);
 
 // 3. GENERATE OPENAPI DOCUMENT DI AKHIR
 // Pindahkan blok ini ke paling bawah agar bisa mendeteksi route di atas

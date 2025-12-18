@@ -1,0 +1,28 @@
+import { z } from "@hono/zod-openapi";
+
+export const AuthSignupSchema = z.object({
+  fullName: z.string(),
+  email: z.string(),
+  password: z.string(),
+});
+
+export const AuthSigninSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});
+
+export const AuthSigninSuccessSchema = z.string();
+
+export const AuthHeaderSchema = z.object({
+  Authorization: z.string().openapi({
+    example: "Bearer TOKEN",
+  }),
+});
+
+export const AuthMeSchema = z.object({
+  id: z.string(),
+  fullName: z.string(),
+  email: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
