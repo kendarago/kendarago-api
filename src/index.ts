@@ -3,7 +3,7 @@ import { logger } from "hono/logger";
 import { cors } from "hono/cors";
 import { Scalar } from "@scalar/hono-api-reference";
 
-import { rootRoute } from "./routes/root";
+import { rootsRoute } from "./routes/root";
 import { vehiclesRoute } from "./routes/vehicles";
 import { rentalCompaniesRoute } from "./routes/rental-companies";
 
@@ -13,7 +13,7 @@ const apiRoutes = app
   .basePath("/")
   .use("*", logger())
   .use("*", cors())
-  .route("/", rootRoute)
+  .route("/", rootsRoute)
   .route("/vehicles", vehiclesRoute)
   .route("/rental-companies", rentalCompaniesRoute);
 
