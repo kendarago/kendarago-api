@@ -10,7 +10,7 @@ import {
 } from "../module/auth-schema";
 
 import { prisma } from "../lib/prisma";
-import { hashPassword, verifyPassword } from "../lib/password";
+import { hashPassword } from "../lib/password";
 import { signToken } from "../lib/token";
 import { checkAuthorized } from "../middleware/middleware";
 
@@ -53,7 +53,7 @@ authRoute.openapi(
     } catch (error) {
       return c.json(
         {
-          message: "Failed to signup user",
+          message: "Failed to Sign Up",
         },
         400
       );
@@ -102,14 +102,14 @@ authRoute.openapi(
       return c.notFound();
     }
 
-    const isPasswordMatch = await verifyPassword(
-      body.password,
-      user.password.hash
-    );
+    // const isPasswordMatch = await verifyPassword(
+    //   body.password,
+    //   user.password.hash
+    // );
 
-    if (!isPasswordMatch) {
-      return c.json({ message: "Password Invalid" }, 400);
-    }
+    // if (!isPasswordMatch) {
+    //   return c.json({ message: "Password Invalid" }, 400);
+    // }
 
     const token = await signToken(user.id);
 
