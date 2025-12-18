@@ -127,10 +127,10 @@ authRoute.openapi(
     responses: {
       200: {
         content: { "application/json": { schema: PrivateUserSchema } },
-        description: "Get authenticated user success",
+        description: "Get Authenticated User Success",
       },
       404: {
-        description: "User not found",
+        description: "User Not Found",
       },
     },
   }),
