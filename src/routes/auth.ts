@@ -1,0 +1,142 @@
+import { createRoute } from "@hono/zod-openapi";
+import { OpenAPIHono } from "@hono/zod-openapi";
+
+import { PrivateUserSchema } from "../module/user-schema";
+import {
+  AuthHeaderSchema,
+  AuthSigninSchema,
+  AuthSigninSuccessSchema,
+  AuthSignupSchema,
+} from "../module/auth-schema";
+
+import { prisma } from "../lib/prisma";
+import { hashPassword, verifyPassword } from "../lib/password";
+import { signToken } from "../lib/token";
+import { checkAuthorized } from "../middleware/middleware";
+
+export const authRoute = new OpenAPIHono();
+// SIGNUP
+authRoute.openapi(
+  createRoute({
+    method: "post",
+    path: "/signup",
+    request: {
+      body: {
+        content: { "application/json": { schema: AuthSignupSchema } },
+      },
+    },
+    responses: {
+      201: {
+        content: { "application/json": { schema: PrivateUserSchema } },
+        description: "Signup Success",
+      },
+      400: {
+        description: "Failed to Sign Up",
+      },
+    },
+  }),
+  async (c) => {
+    const body = c.req.valid("json");
+    try {
+      const user = await prisma.user.create({
+        data: {
+          email: body.email,
+          fullName: body.fullName,
+          password: {
+            create: {
+              hash: await hashPassword(body.password),
+            },
+          },
+        },
+      });
+      return c.json(user, 201);
+    } catch (error) {
+      return c.json(
+        {
+          message: "Failed to Sign Up",
+        },
+        400
+      );
+    }
+  }
+);
+
+// SIGNIN
+authRoute.openapi(
+  createRoute({
+    method: "post",
+    path: "/signin",
+    request: {
+      body: {
+        content: { "application/json": { schema: AuthSigninSchema } },
+      },
+    },
+    responses: {
+      200: {
+        content: { "application/json": { schema: AuthSigninSuccessSchema } },
+        description: "Signin Success",
+      },
+      400: {
+        description: "Signin Failed",
+      },
+      404: {
+        description: "User not found",
+      },
+    },
+  }),
+  async (c) => {
+    const body = c.req.valid("json");
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email: body.email,
+      },
+      include: {
+        password: true,
+      },
+    });
+    if (!user) {
+      return c.notFound();
+    }
+    if (!user.password) {
+      return c.notFound();
+    }
+
+    const isPasswordMatch = await verifyPassword(
+      body.password,
+      user.password.hash
+    );
+
+    if (!isPasswordMatch) {
+      return c.json({ message: "Password Invalid" }, 400);
+    }
+
+    const token = await signToken(user.id);
+
+    return c.json(token);
+  }
+);
+
+// / me
+authRoute.openapi(
+  createRoute({
+    method: "get",
+    path: "/me",
+    request: { headers: AuthHeaderSchema },
+    middleware: checkAuthorized,
+    responses: {
+      200: {
+        content: { "application/json": { schema: PrivateUserSchema } },
+        description: "Get Authenticated User Success",
+      },
+      404: {
+        description: "User Not Found",
+      },
+    },
+  }),
+  async (c) => {
+    const user = c.get("user");
+
+    return c.json(user);
+  }
+);
