@@ -2,12 +2,17 @@ import { createRoute } from "@hono/zod-openapi";
 import { OpenAPIHono } from "@hono/zod-openapi";
 
 import { PrivateUserSchema } from "../module/user-schema";
-import { AuthSignupSchema } from "../module/auth-schema";
+import {
+  AuthHeaderSchema,
+  AuthSigninSchema,
+  AuthSigninSuccessSchema,
+  AuthSignupSchema,
+} from "../module/auth-schema";
 
 import { prisma } from "../lib/prisma";
-// import { hashPassword, verifyPassword } from "../../lib/password";
-// import { signToken } from "../../lib/token";
-import { checkAuthorized } from "../auth/middleware";
+import { hashPassword, verifyPassword } from "../lib/password";
+import { signToken } from "../lib/token";
+import { checkAuthorized } from "../middleware/middleware";
 
 export const authRoute = new OpenAPIHono();
 // SIGNUP
@@ -37,18 +42,18 @@ authRoute.openapi(
         data: {
           email: body.email,
           fullName: body.fullName,
-          // password: {
-          //   create: {
-          //     // hash: await hashPassword(body.password),
-          //   },
-          // },
+          password: {
+            create: {
+              hash: await hashPassword(body.password),
+            },
+          },
         },
       });
       return c.json(user, 201);
     } catch (error) {
       return c.json(
         {
-          message: "Failed to register user",
+          message: "Failed to signup user",
         },
         400
       );
@@ -56,88 +61,82 @@ authRoute.openapi(
   }
 );
 
-// // SIGNIN
-// authRoute.openapi(
-//   createRoute({
-//     method: "post",
-//     path: "/login",
-//     request: {
-//       body: {
-//         content: { "application/json": { schema: AuthLoginSchema } },
-//       },
-//     },
-//     responses: {
-//       200: {
-//         content: { "application/json": { schema: AuthLoginSuccessSchema } },
-//         description: "Login Success",
-//       },
-//       400: {
-//         description: "Login Failed",
-//       },
-//       404: {
-//         description: "User not found",
-//       },
-//     },
-//   }),
-//   async (c) => {
-//     const body = c.req.valid("json");
+// SIGNIN
+authRoute.openapi(
+  createRoute({
+    method: "post",
+    path: "/signin",
+    request: {
+      body: {
+        content: { "application/json": { schema: AuthSigninSchema } },
+      },
+    },
+    responses: {
+      200: {
+        content: { "application/json": { schema: AuthSigninSuccessSchema } },
+        description: "Signin Success",
+      },
+      400: {
+        description: "Signin Failed",
+      },
+      404: {
+        description: "User not found",
+      },
+    },
+  }),
+  async (c) => {
+    const body = c.req.valid("json");
 
-//     const user = await prisma.user.findUnique({
-//       where: {
-//         email: body.email,
-//       },
-//       include: {
-//         password: true,
-//       },
-//     });
-//     if (!user) {
-//       return c.notFound();
-//     }
-//     if (!user.password) {
-//       return c.notFound();
-//     }
+    const user = await prisma.user.findUnique({
+      where: {
+        email: body.email,
+      },
+      include: {
+        password: true,
+      },
+    });
+    if (!user) {
+      return c.notFound();
+    }
+    if (!user.password) {
+      return c.notFound();
+    }
 
-//     const isPasswordMatch = await verifyPassword(
-//       body.password,
-//       user.password.hash
-//     );
+    const isPasswordMatch = await verifyPassword(
+      body.password,
+      user.password.hash
+    );
 
-//     if (!isPasswordMatch) {
-//       return c.json({ message: "Password Invalid" }, 400);
-//     }
+    if (!isPasswordMatch) {
+      return c.json({ message: "Password Invalid" }, 400);
+    }
 
-//     const token = await signToken(user.id);
+    const token = await signToken(user.id);
 
-//     return c.json(token);
-//   }
-// );
+    return c.json(token);
+  }
+);
 
-// // / me
-// authRoute.openapi(
-//   createRoute({
-//     method: "get",
-//     path: "/me",
-//     // request: {
-//     //   body: {
-//     //     content: { "application/json": { schema: AuthLoginSchema } },
-//     //   },
-//     // },
-//     request: {
-//       headers: AuthHeaderSchema,
-//     },
-//     middleware: checkAuthorized,
-//     responses: {
-//       200: {
-//         content: { "application/json": { schema: PrivateUserSchema } },
-//         description: "Get authenticated user success",
-//       },
-//       404: {
-//         description: "User not found",
-//       },
-//     },
-//   }),
-//   async (c) => {
-//     const user = c.get("user");
-//     return c.json(user);
-//   }
-// );
+// / me
+authRoute.openapi(
+  createRoute({
+    method: "get",
+    path: "/me",
+    request: { headers: AuthHeaderSchema },
+    middleware: checkAuthorized,
+    responses: {
+      200: {
+        content: { "application/json": { schema: PrivateUserSchema } },
+        description: "Get authenticated user success",
+      },
+      404: {
+        description: "User not found",
+      },
+    },
+  }),
+  async (c) => {
+    const user = c.get("user");
+
+    return c.json(user);
+  }
+);
