@@ -24,6 +24,8 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Manual",
     vehicleTypeSlug: "motorcycle",
     year: 2018,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/13773170-1785-43ad-a73d-b024e112604b/HondaSupraX1252018.png",
   },
   {
     brand: "Honda",
@@ -36,6 +38,8 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Manual",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/d5d96ced-ff11-4a21-bbc9-e6bd0345cbc9/HondaRevoFit1102019.png",
   },
   {
     brand: "Yamaha",
@@ -48,6 +52,8 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2012,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/30dc221b-5dd6-4a5a-8d1f-30b530547867/YamahaMioSporty1152012.png",
   },
   {
     brand: "Yamaha",
@@ -60,6 +66,8 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/a4eb0da4-82d3-45c7-9147-dc6cd6534132/YamahaMioM31252019.png",
   },
   {
     brand: "Yamaha",
@@ -72,6 +80,8 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2014,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/36c89a7f-6465-4b65-9aae-95b831608ffc/YamahaMioJ1152014.png",
   },
   {
     brand: "Honda",
