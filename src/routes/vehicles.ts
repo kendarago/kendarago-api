@@ -1,46 +1,70 @@
-import { Hono } from "hono";
+import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 import { prisma } from "../lib/prisma";
+import { VehiclesSchema } from "../module/vehicle-schema";
 
-export const vehiclesRoute = new Hono()
-  .get("/", async (c) => {
-    const vehicles = await prisma.vehicle.findMany();
-    return c.json({
-      message: "Get All Vehicles",
-      data: vehicles,
-    });
-  })
+export const vehiclesRoute = new OpenAPIHono();
 
-  .get("/search", async (c) => {
-    const q = c.req.query("q") || "";
-    const keyword = q.toLowerCase();
-
-    const foundVehicles = await prisma.vehicle.findMany({
-      where: {
-        name: {
-          contains: keyword,
-        },
+vehiclesRoute.openapi(
+  createRoute({
+    method: "get",
+    path: "/",
+    responses: {
+      200: {
+        content: { "application/json": { schema: VehiclesSchema } },
+        description: "Get all vehicles",
       },
-    });
+    },
+  }),
+  async (c) => {
+    const vehicles = await prisma.vehicle.findMany();
+    return c.json(
+      vehicles.map((v) => ({
+        ...v,
+        imageUrl: v.imageUrl ?? undefined,
+      })),
+      200
+    );
+  }
+);
+// .get("/", async (c) => {
+//   const vehicles = await prisma.vehicle.findMany();
+//   return c.json({
+//     message: "Get All Vehicles",
+//     data: vehicles,
+//   });
+// })
 
-    return c.json({
-      message: "Get Vehicles by Query Params",
-      data: foundVehicles,
-    });
-  })
+// .get("/search", async (c) => {
+//   const q = c.req.query("q") || "";
+//   const keyword = q.toLowerCase();
 
-  .get("/:id", async (c) => {
-    const id = c.req.param("id");
+//   const foundVehicles = await prisma.vehicle.findMany({
+//     where: {
+//       name: {
+//         contains: keyword,
+//       },
+//     },
+//   });
 
-    const vehicle = await prisma.vehicle.findUnique({
-      where: { id },
-    });
+//   return c.json({
+//     message: "Get Vehicles by Query Params",
+//     data: foundVehicles,
+//   });
+// })
 
-    if (!vehicle) {
-      return c.notFound();
-    }
+// .get("/:id", async (c) => {
+//   const id = c.req.param("id");
 
-    return c.json({
-      message: "Get Vehicles by id",
-      data: vehicle,
-    });
-  });
+//   const vehicle = await prisma.vehicle.findUnique({
+//     where: { id },
+//   });
+
+//   if (!vehicle) {
+//     return c.notFound();
+//   }
+
+//   return c.json({
+//     message: "Get Vehicles by id",
+//     data: vehicle,
+//   });
+// });
