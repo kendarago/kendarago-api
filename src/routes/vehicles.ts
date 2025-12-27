@@ -1,6 +1,10 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 import { prisma } from "../lib/prisma";
-import { VehiclesSchema } from "../module/vehicle-schema";
+import {
+  VehicleSchema,
+  VehiclesIdSchema,
+  VehiclesSchema,
+} from "../module/vehicle-schema";
 
 export const vehiclesRoute = new OpenAPIHono();
 
@@ -26,13 +30,37 @@ vehiclesRoute.openapi(
     );
   }
 );
-// .get("/", async (c) => {
-//   const vehicles = await prisma.vehicle.findMany();
-//   return c.json({
-//     message: "Get All Vehicles",
-//     data: vehicles,
-//   });
-// })
+
+vehiclesRoute.openapi(
+  createRoute({
+    method: "get",
+    path: "/{id}",
+    request: {
+      params: VehiclesIdSchema,
+    },
+    responses: {
+      200: {
+        content: { "application/json": { schema: VehicleSchema } },
+        description: "Get vehicle by ID",
+      },
+      404: {
+        description: "Vehicle not found",
+      },
+    },
+  }),
+  async (c) => {
+    const id = c.req.param("id");
+
+    const vehicle = await prisma.vehicle.findUnique({
+      where: { id },
+    });
+
+    if (!vehicle) {
+      return c.notFound();
+    }
+    return c.json(vehicle, 200);
+  }
+);
 
 // .get("/search", async (c) => {
 //   const q = c.req.query("q") || "";

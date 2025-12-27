@@ -15,3 +15,7 @@ export const VehicleSchema = z.object({
 });
 
 export const VehiclesSchema = z.array(VehicleSchema);
+
+export const VehiclesIdSchema = z.object({
+  id: z.string(),
+});
