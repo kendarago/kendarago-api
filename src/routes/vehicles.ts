@@ -21,15 +21,17 @@ vehiclesRoute.openapi(
     },
   }),
   async (c) => {
+    const query = c.req.query();
+    console.log({ query });
     const vehicles = await prisma.vehicle.findMany();
     return c.json(
       vehicles.map((v) => ({
         ...v,
         imageUrl: v.imageUrl ?? undefined,
       })),
-      200
+      200,
     );
-  }
+  },
 );
 
 vehiclesRoute.openapi(
@@ -66,7 +68,7 @@ vehiclesRoute.openapi(
     }
 
     return c.json(foundVehicles, 200);
-  }
+  },
 );
 
 vehiclesRoute.openapi(
@@ -97,5 +99,5 @@ vehiclesRoute.openapi(
       return c.json({ error: "Product not found" }, 404);
     }
     return c.json(vehicle, 200);
-  }
+  },
 );
