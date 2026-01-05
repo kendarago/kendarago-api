@@ -10,6 +10,7 @@ export type Vehicle = {
   vehicleTypeSlug: "motorcycle" | "car";
   transmission: "Matic" | "Manual";
   fuelType: "Gas" | "Electric";
+  stock: number; // Add stock field
 };
 
 export const dataVehicles: Vehicle[] = [
@@ -24,8 +25,9 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Manual",
     vehicleTypeSlug: "motorcycle",
     year: 2018,
+    stock: 3,
     imageUrl:
-      "https://1vhhu4ztmd.ucarecd.net/13773170-1785-43ad-a73d-b024e112604b/HondaSupraX1252018.png",
+      "https://1vhhu4ztmd. ucarecd.net/13773170-1785-43ad-a73d-b024e112604b/HondaSupraX1252018.png",
   },
   {
     brand: "Honda",
@@ -38,6 +40,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Manual",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 2,
     imageUrl:
       "https://1vhhu4ztmd.ucarecd.net/d5d96ced-ff11-4a21-bbc9-e6bd0345cbc9/HondaRevoFit1102019.png",
   },
@@ -52,6 +55,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2012,
+    stock: 2,
     imageUrl:
       "https://1vhhu4ztmd.ucarecd.net/30dc221b-5dd6-4a5a-8d1f-30b530547867/YamahaMioSporty1152012.png",
   },
@@ -66,8 +70,9 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 4,
     imageUrl:
-      "https://1vhhu4ztmd.ucarecd.net/a4eb0da4-82d3-45c7-9147-dc6cd6534132/YamahaMioM31252019.png",
+      "https://1vhhu4ztmd.ucarecd. net/a4eb0da4-82d3-45c7-9147-dc6cd6534132/YamahaMioM31252019.png",
   },
   {
     brand: "Yamaha",
@@ -80,6 +85,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2014,
+    stock: 3,
     imageUrl:
       "https://1vhhu4ztmd.ucarecd.net/36c89a7f-6465-4b65-9aae-95b831608ffc/YamahaMioJ1152014.png",
   },
@@ -94,6 +100,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2012,
+    stock: 2,
     imageUrl:
       "https://1vhhu4ztmd.ucarecd.net/dab72b16-bcb2-4d9d-86e4-7fa18a018e4c/HondaBeatKarbu1102012.png",
   },
@@ -108,6 +115,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2015,
+    stock: 2,
     imageUrl:
       "https://1vhhu4ztmd.ucarecd.net/22637025-eb5a-492e-b8f6-9f8f6f96e0c0/YamahaSoulGT1252015.png",
   },
@@ -122,8 +130,9 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2016,
+    stock: 5,
     imageUrl:
-      "https://1vhhu4ztmd.ucarecd.net/791e296f-57c3-4428-ac65-036df1ec73b7/HondaBeatFI1102016.png",
+      "https://1vhhu4ztmd.ucarecd. net/791e296f-57c3-4428-ac65-036df1ec73b7/HondaBeatFI1102016.png",
   },
   {
     brand: "Honda",
@@ -138,7 +147,7 @@ export const dataVehicles: Vehicle[] = [
     year: 2017,
     stock: 4,
     imageUrl:
-      "https://1vhhu4ztmd.ucarecd.net/57755f31-144b-4f8f-a7c0-224aab1fc09f/HondaVarioFI1102017.png",
+      "https://1vhhu4ztmd.ucarecd. net/57755f31-144b-4f8f-a7c0-224aab1fc09f/HondaVarioFI1102017.png",
   },
   {
     brand: "Honda",
@@ -151,8 +160,9 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 6,
     imageUrl:
-      "https://1vhhu4ztmd.ucarecd.net/69037c20-f061-4ff8-8bc1-90d021c72eb7/HondaBeateSP1102019.png",
+      "https://1vhhu4ztmd.ucarecd. net/69037c20-f061-4ff8-8bc1-90d021c72eb7/HondaBeateSP1102019.png",
   },
   {
     brand: "Honda",
@@ -165,6 +175,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2021,
+    stock: 5,
   },
   {
     brand: "Honda",
@@ -177,6 +188,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2024,
+    stock: 8,
   },
   {
     brand: "Honda",
@@ -189,6 +201,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2015,
+    stock: 3,
   },
   {
     brand: "Honda",
@@ -201,6 +214,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2020,
+    stock: 7,
   },
   {
     brand: "Honda",
@@ -213,6 +227,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2021,
+    stock: 5,
   },
   {
     brand: "Honda",
@@ -225,6 +240,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2020,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -237,6 +253,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 6,
   },
   {
     brand: "Honda",
@@ -249,6 +266,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2022,
+    stock: 4,
   },
   {
     brand: "Yamaha",
@@ -261,6 +279,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2021,
+    stock: 3,
   },
   {
     brand: "Yamaha",
@@ -273,6 +292,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2023,
+    stock: 5,
   },
   {
     brand: "Honda",
@@ -285,6 +305,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2023,
+    stock: 3,
   },
   {
     brand: "Honda",
@@ -297,6 +318,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2024,
+    stock: 2,
   },
   {
     brand: "Honda",
@@ -309,6 +331,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Manual",
     vehicleTypeSlug: "motorcycle",
     year: 2022,
+    stock: 1,
   },
   {
     brand: "Honda",
@@ -321,6 +344,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2021,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -333,6 +357,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2020,
+    stock: 5,
   },
   {
     brand: "Honda",
@@ -345,6 +370,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2022,
+    stock: 6,
   },
   {
     brand: "Yamaha",
@@ -357,6 +383,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2022,
+    stock: 3,
   },
   {
     brand: "Honda",
@@ -369,6 +396,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 4,
   },
   {
     brand: "Yamaha",
@@ -381,6 +409,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2018,
+    stock: 5,
   },
   {
     brand: "Yamaha",
@@ -393,6 +422,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -405,6 +435,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2021,
+    stock: 5,
   },
   {
     brand: "Honda",
@@ -417,6 +448,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2020,
+    stock: 3,
   },
   {
     brand: "Honda",
@@ -429,6 +461,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2020,
+    stock: 6,
   },
   {
     brand: "Honda",
@@ -441,6 +474,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2023,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -453,6 +487,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2022,
+    stock: 2,
   },
   {
     brand: "Yamaha",
@@ -465,6 +500,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2023,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -477,6 +513,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2023,
+    stock: 2,
   },
   {
     brand: "Honda",
@@ -489,6 +526,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Manual",
     vehicleTypeSlug: "motorcycle",
     year: 2021,
+    stock: 1,
   },
   {
     brand: "Yamaha",
@@ -501,6 +539,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2014,
+    stock: 8,
   },
   {
     brand: "Honda",
@@ -513,6 +552,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2012,
+    stock: 5,
   },
   {
     brand: "Honda",
@@ -525,6 +565,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2022,
+    stock: 10,
   },
   {
     brand: "Honda",
@@ -537,6 +578,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 7,
   },
   {
     brand: "Honda",
@@ -549,6 +591,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2016,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -561,6 +604,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2022,
+    stock: 6,
   },
   {
     brand: "Honda",
@@ -573,6 +617,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 5,
   },
   {
     brand: "Yamaha",
@@ -585,6 +630,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2023,
+    stock: 3,
   },
   {
     brand: "Yamaha",
@@ -597,6 +643,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2021,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -609,6 +656,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 3,
   },
   {
     brand: "Honda",
@@ -621,6 +669,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2023,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -633,6 +682,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2023,
+    stock: 2,
   },
   {
     brand: "Honda",
@@ -645,6 +695,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Manual",
     vehicleTypeSlug: "motorcycle",
     year: 2017,
+    stock: 3,
   },
   {
     brand: "Yamaha",
@@ -657,6 +708,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2015,
+    stock: 6,
   },
   {
     brand: "Honda",
@@ -669,6 +721,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2021,
+    stock: 5,
   },
   {
     brand: "Honda",
@@ -681,6 +734,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2021,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -693,6 +747,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2020,
+    stock: 5,
   },
   {
     brand: "Honda",
@@ -705,6 +760,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2022,
+    stock: 7,
   },
   {
     brand: "Honda",
@@ -717,6 +773,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 4,
   },
   {
     brand: "Honda",
@@ -729,6 +786,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2019,
+    stock: 2,
   },
   {
     brand: "Honda",
@@ -741,6 +799,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2020,
+    stock: 6,
   },
   {
     brand: "Honda",
@@ -753,5 +812,6 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2024,
+    stock: 3,
   },
 ];
