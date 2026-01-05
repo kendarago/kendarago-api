@@ -136,6 +136,7 @@ export const dataVehicles: Vehicle[] = [
     transmission: "Matic",
     vehicleTypeSlug: "motorcycle",
     year: 2017,
+    stock: 4,
     imageUrl:
       "https://1vhhu4ztmd.ucarecd.net/57755f31-144b-4f8f-a7c0-224aab1fc09f/HondaVarioFI1102017.png",
   },

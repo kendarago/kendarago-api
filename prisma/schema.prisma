@@ -28,8 +28,9 @@ model User {
 
   password Password?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
 }
 
 model Password {
@@ -50,6 +51,7 @@ model RentalCompany {
 
   name           String
   address        String
+  city           String
   operatingHours String
   contact        String
 
@@ -84,6 +86,7 @@ model Vehicle {
   year         Int
   pricePerDay  Int
   seatCapacity Int
+  stock        Int @default(1)
 
   rentalCompany     RentalCompany @relation(fields: [rentalCompanySlug], references: [slug])
   rentalCompanySlug String
@@ -91,8 +94,41 @@ model Vehicle {
   vehicleType     VehicleType @relation(fields: [vehicleTypeSlug], references: [slug])
   vehicleTypeSlug String
 
+  bookings Booking[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // This ensures same vehicle name+brand+year can exist at different companies
+  // But prevents duplicates within the same company
+  // @@unique([name, brand, year, rentalCompanySlug])
 }
 
-// Should we add city?
+model Booking {
+  id String @id @default(cuid())
+
+  startDate DateTime
+  endDate   DateTime
+  status    BookingStatus @default(PENDING)
+  quantity  Int           @default(1) // How many units booked
+
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  vehicleId String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  totalPrice Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([vehicleId])
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}

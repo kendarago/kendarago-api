@@ -13,6 +13,9 @@ vehiclesRoute.openapi(
   createRoute({
     method: "get",
     path: "/",
+    request: {
+      query: VehiclesSearchSchema,
+    },
     responses: {
       200: {
         content: { "application/json": { schema: VehiclesSchema } },
@@ -21,9 +24,23 @@ vehiclesRoute.openapi(
     },
   }),
   async (c) => {
-    const query = c.req.query();
-    console.log({ query });
-    const vehicles = await prisma.vehicle.findMany();
+    const { q, category } = c.req.query();
+    const vehicles = await prisma.vehicle.findMany({
+      where: {
+        name: q
+          ? {
+              contains: q,
+              mode: "insensitive",
+            }
+          : undefined,
+        vehicleTypeSlug: category
+          ? {
+              equals: category,
+            }
+          : undefined,
+      },
+    });
+    console.log({ category });
     return c.json(
       vehicles.map((v) => ({
         ...v,
@@ -52,18 +69,25 @@ vehiclesRoute.openapi(
     },
   }),
   async (c) => {
-    const { q } = c.req.query();
+    const { q, category } = c.req.query();
 
     const foundVehicles = await prisma.vehicle.findMany({
       where: {
-        name: {
-          contains: q,
-          mode: "insensitive", // recommended
-        },
+        name: q
+          ? {
+              contains: q,
+              mode: "insensitive",
+            }
+          : undefined,
+        vehicleTypeSlug: category
+          ? {
+              equals: category,
+            } 
+          : undefined,
       },
     });
 
-    if (!foundVehicles) {
+    if (!foundVehicles || foundVehicles.length === 0) {
       return c.json({ error: "Vehicle not found" }, 404);
     }
 
