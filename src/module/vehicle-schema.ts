@@ -1,7 +1,7 @@
 import { z } from "@hono/zod-openapi";
 
 export const VehicleSchema = z.object({
-   id: z.string(),
+  id: z.string(),
   name: z.string(),
   brand: z.string(),
   fuelType: z.string(),
@@ -27,4 +27,5 @@ export const VehiclesIdSchema = z.object({
 export const VehiclesSearchSchema = z.object({
   q: z.string().optional(),
   category: z.string().optional(),
+  available: z.string().optional(),
 });
