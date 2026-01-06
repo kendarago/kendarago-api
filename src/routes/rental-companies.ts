@@ -62,3 +62,40 @@ rentalCompaniesRoute.openapi(
     });
   }
 );
+
+rentalCompaniesRoute.openapi(
+  createRoute({
+    method: "get",
+    path: "/{rentalCompanyslug}/vehicles/{vehicleSlug}",
+    request: {
+      params: RentalCompanySlugSchema,
+    },
+    responses: {
+      200: {
+        content: { "application/json": { schema: RentalCompanySchema } },
+        description: "Get Vehicle by Slug",
+      },
+      404: {
+        description: "Vehicle not found",
+      },
+    },
+  }),
+  async (c) => {
+    const slug = c.req.param("slug");
+
+    const rentalCompany = await prisma.rentalCompany.findUnique({
+      where: { slug },
+      include: {
+        vehicles: true,
+      },
+    });
+
+    if (!rentalCompany) {
+      return c.json({ error: "Vehicle not found" }, 404);
+    }
+    return c.json({
+      message: "Get Vehicle by slug",
+      data: rentalCompany,
+    });
+  }
+);
