@@ -10,7 +10,7 @@ export type Vehicle = {
   vehicleTypeSlug: "motorcycle" | "car";
   transmission: "Matic" | "Manual";
   fuelType: "Gas" | "Electric";
-  stock: number; // Add stock field
+  stock: number;
 };
 
 export const dataVehicles: Vehicle[] = [
