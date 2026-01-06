@@ -25,7 +25,8 @@ export const VehicleIdSchema = z.object({
 });
 
 export const VehicleSlugSchema = z.object({
-  slug: z.string(),
+  rentalCompanySlug: z.string(),
+  vehicleSlug: z.string(),
 });
 
 export const VehiclesSearchSchema = z.object({
