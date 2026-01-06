@@ -13,13 +13,6 @@ datasource db {
   provider = "postgresql"
 }
 
-// model User {
-//   id String @id @default(ulid())
-
-//   email String @unique
-//   name  String
-// }
-
 model User {
   id String @id @default(ulid())
 
@@ -74,7 +67,8 @@ model VehicleType {
 }
 
 model Vehicle {
-  id String @id @default(cuid())
+  id   String @id @default(cuid())
+  slug String @unique
 
   name           String
   brand          String
@@ -99,9 +93,7 @@ model Vehicle {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // This ensures same vehicle name+brand+year can exist at different companies
-  // But prevents duplicates within the same company
-  // @@unique([name, brand, year, rentalCompanySlug])
+  @@unique([name, rentalCompanySlug])
 }
 
 model Booking {
