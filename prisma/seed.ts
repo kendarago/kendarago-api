@@ -35,8 +35,15 @@ async function main() {
   }
 
   for (const seedVehicle of dataVehicles) {
-    const vehicle = await prisma.vehicle.create({
-      data: seedVehicle,
+    const slug = createSlug(seedVehicle.name);
+
+    const vehicle = await prisma.vehicle.upsert({
+      where: { slug },
+      update: {},
+      create: {
+        slug,
+        ...seedVehicle,
+      },
     });
     console.log(`🏎️ Vehicle: ${vehicle.name}`);
   }
