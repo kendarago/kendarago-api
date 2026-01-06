@@ -2,7 +2,7 @@ import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 import { prisma } from "../lib/prisma";
 import {
   VehicleSchema,
-  VehiclesIdSchema,
+  VehicleIdSchema,
   VehiclesSchema,
   VehiclesSearchSchema,
 } from "../module/vehicle-schema";
@@ -50,9 +50,9 @@ vehiclesRoute.openapi(
         ...v,
         imageUrl: v.imageUrl ?? undefined,
       })),
-      200,
+      200
     );
-  },
+  }
 );
 
 vehiclesRoute.openapi(
@@ -60,7 +60,7 @@ vehiclesRoute.openapi(
     method: "get",
     path: "/{id}",
     request: {
-      params: VehiclesIdSchema,
+      params: VehicleIdSchema,
     },
     responses: {
       200: {
@@ -83,5 +83,5 @@ vehiclesRoute.openapi(
       return c.json({ error: "Product not found" }, 404);
     }
     return c.json(vehicle, 200);
-  },
+  }
 );

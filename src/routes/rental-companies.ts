@@ -5,6 +5,7 @@ import {
   RentalCompanySchema,
   RentalCompanySlugSchema,
 } from "../module/rental-company-schema";
+import { VehicleSchema, VehicleSlugSchema } from "../module/vehicle-schema";
 
 export const rentalCompaniesRoute = new OpenAPIHono();
 
@@ -59,6 +60,44 @@ rentalCompaniesRoute.openapi(
     return c.json({
       message: "Get Rental Company by slug and its vehicles",
       data: rentalCompany,
+    });
+  }
+);
+
+rentalCompaniesRoute.openapi(
+  createRoute({
+    method: "get",
+    path: "/{rentalCompanySlug}/vehicles/{vehicleSlug}",
+    request: {
+      params: VehicleSlugSchema,
+    },
+    responses: {
+      200: {
+        content: { "application/json": { schema: VehicleSchema } },
+        description: "Get Vehicle by Slug",
+      },
+      404: {
+        description: "Vehicle not found",
+      },
+    },
+  }),
+  async (c) => {
+    const rentalCompanySlug = c.req.param("rentalCompanySlug");
+    const vehicleSlug = c.req.param("vehicleSlug");
+
+    const vehicle = await prisma.vehicle.findUnique({
+      where: {
+        slug: vehicleSlug,
+        rentalCompanySlug: rentalCompanySlug,
+      },
+    });
+
+    if (!vehicle) {
+      return c.json({ error: "Vehicle not found" }, 404);
+    }
+    return c.json({
+      message: "Get Vehicle by slug",
+      data: vehicle,
     });
   }
 );
