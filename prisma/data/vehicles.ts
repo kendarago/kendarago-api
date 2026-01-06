@@ -27,7 +27,7 @@ export const dataVehicles: Vehicle[] = [
     year: 2018,
     stock: 3,
     imageUrl:
-      "https://1vhhu4ztmd. ucarecd.net/13773170-1785-43ad-a73d-b024e112604b/HondaSupraX1252018.png",
+      "https://1vhhu4ztmd.ucarecd.net/13773170-1785-43ad-a73d-b024e112604b/HondaSupraX1252018.png",
   },
   {
     brand: "Honda",
