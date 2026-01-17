@@ -4,6 +4,7 @@ export const AuthSignupSchema = z.object({
   fullName: z.string(),
   email: z.string(),
   password: z.string(),
+  phoneNumber: z.string(),
 });
 
 export const AuthSigninSchema = z.object({
