@@ -1,4 +1,5 @@
 import { z } from "@hono/zod-openapi";
+import { RentalCompanySchema } from "./rental-company-schema";
 
 export const VehicleSchema = z.object({
   id: z.string(),
@@ -13,6 +14,7 @@ export const VehicleSchema = z.object({
   seatCapacity: z.number(),
   stock: z.number(),
   rentalCompanySlug: z.string(),
+  rentalCompany: RentalCompanySchema.optional(),
   vehicleTypeSlug: z.string(),
   createdAt: z.date(),
   updatedAt: z.date(),

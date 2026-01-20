@@ -90,6 +90,9 @@ rentalCompaniesRoute.openapi(
         slug: vehicleSlug,
         rentalCompanySlug: rentalCompanySlug,
       },
+      include: {
+        rentalCompany: true,
+      },
     });
 
     if (!vehicle) {

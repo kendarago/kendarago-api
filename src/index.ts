@@ -7,6 +7,7 @@ import { rentalCompaniesRoute } from "./routes/rental-companies";
 import { vehiclesRoute } from "./routes/vehicles";
 import { userRoute } from "./routes/user";
 import { authRoute } from "./routes/auth";
+import { bookingsRoute } from "./routes/bookings";
 
 const app = new OpenAPIHono();
 
@@ -17,6 +18,7 @@ app.route("/vehicles", vehiclesRoute);
 app.route("/rental-companies", rentalCompaniesRoute);
 app.route("/users", userRoute);
 app.route("/auth", authRoute);
+app.route("/bookings", bookingsRoute);
 
 app.doc("/openapi.json", {
   openapi: "3.0.0",
