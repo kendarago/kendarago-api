@@ -71,6 +71,8 @@ export const dataVehicles: Vehicle[] = [
     vehicleTypeSlug: "motorcycle",
     year: 2024,
     stock: 2,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/09910652-2b07-412c-b56a-c45effa4f16d/Stylo160ABSRoyalGreen.png",
   },
   {
     brand: "Honda",
@@ -84,6 +86,8 @@ export const dataVehicles: Vehicle[] = [
     vehicleTypeSlug: "motorcycle",
     year: 2022,
     stock: 1,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/fec13eea-a6dc-43d9-a718-113add68ea73/pngcliparthondacrf150fhondacrf150lhondacrf150rhondacrfserieshondaracingcar.png",
   },
   {
     brand: "Yamaha",
@@ -97,6 +101,8 @@ export const dataVehicles: Vehicle[] = [
     vehicleTypeSlug: "motorcycle",
     year: 2023,
     stock: 4,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/a526c5a4-7ce9-4734-8ef0-8ff8a4b9540e/nmaxturbosilver1.png",
   },
 
   {
@@ -111,6 +117,8 @@ export const dataVehicles: Vehicle[] = [
     vehicleTypeSlug: "motorcycle",
     year: 2023,
     stock: 3,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/41ff2676-0c34-419d-9d58-4a69043554f3/fazzabupink.png",
   },
   {
     brand: "Honda",
@@ -124,6 +132,8 @@ export const dataVehicles: Vehicle[] = [
     vehicleTypeSlug: "motorcycle",
     year: 2023,
     stock: 4,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/27b09e5f-4c44-4ece-8df8-e083140a7ffa/HondaPCX160RoadsyncMatteBlack.png",
   },
   {
     brand: "Honda",
@@ -137,6 +147,8 @@ export const dataVehicles: Vehicle[] = [
     vehicleTypeSlug: "motorcycle",
     year: 2020,
     stock: 6,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/e4428055-9a23-4bab-ad2f-cb43a3ed7fba/unnamed.png",
   },
   {
     brand: "Honda",
@@ -150,6 +162,8 @@ export const dataVehicles: Vehicle[] = [
     vehicleTypeSlug: "motorcycle",
     year: 2024,
     stock: 3,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/38412489-41e1-468b-a7d8-3281ef5b0bc0/Vario160ABSGrandeMatteBlue.png",
   },
   {
     brand: "Honda",
@@ -163,5 +177,7 @@ export const dataVehicles: Vehicle[] = [
     vehicleTypeSlug: "motorcycle",
     year: 2021,
     stock: 4,
+    imageUrl:
+      "https://1vhhu4ztmd.ucarecd.net/73c7df88-f643-4ea1-a783-b9a04ebb943b/optimizedproduk_foto1731480447_NewHondaScoopyVariantWebFashionBrown.png",
   },
 ];
