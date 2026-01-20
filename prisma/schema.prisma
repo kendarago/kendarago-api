@@ -83,8 +83,8 @@ model Vehicle {
   seatCapacity Int
   stock        Int @default(1)
 
-  rentalCompany     RentalCompany @relation(fields: [rentalCompanySlug], references: [slug])
-  rentalCompanySlug String
+  rentalCompany   RentalCompany @relation(fields: [rentalCompanyId], references: [id])
+  rentalCompanyId String
 
   vehicleType     VehicleType @relation(fields: [vehicleTypeSlug], references: [slug])
   vehicleTypeSlug String
@@ -94,7 +94,7 @@ model Vehicle {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([name, rentalCompanySlug])
+  @@unique([name, rentalCompanyId])
 }
 
 model Booking {
