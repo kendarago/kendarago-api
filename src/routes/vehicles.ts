@@ -44,15 +44,18 @@ vehiclesRoute.openapi(
           },
         }),
       },
+      include: {
+        rentalCompany: true,
+      },
     });
     return c.json(
       vehicles.map((v) => ({
         ...v,
         imageUrl: v.imageUrl ?? undefined,
       })),
-      200
+      200,
     );
-  }
+  },
 );
 
 vehiclesRoute.openapi(
@@ -83,5 +86,5 @@ vehiclesRoute.openapi(
       return c.json({ error: "Product not found" }, 404);
     }
     return c.json(vehicle, 200);
-  }
+  },
 );
