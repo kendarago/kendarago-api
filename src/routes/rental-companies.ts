@@ -24,7 +24,7 @@ rentalCompaniesRoute.openapi(
   async (c) => {
     const rentalCompanies = await prisma.rentalCompany.findMany({});
     return c.json(rentalCompanies);
-  }
+  },
 );
 
 rentalCompaniesRoute.openapi(
@@ -57,11 +57,8 @@ rentalCompaniesRoute.openapi(
     if (!rentalCompany) {
       return c.json({ error: "Rental Company not found" }, 404);
     }
-    return c.json({
-      message: "Get Rental Company by slug and its vehicles",
-      data: rentalCompany,
-    });
-  }
+    return c.json(rentalCompany);
+  },
 );
 
 rentalCompaniesRoute.openapi(
@@ -88,7 +85,9 @@ rentalCompaniesRoute.openapi(
     const vehicle = await prisma.vehicle.findUnique({
       where: {
         slug: vehicleSlug,
-        rentalCompanySlug: rentalCompanySlug,
+        rentalCompany: {
+          slug: rentalCompanySlug,
+        },
       },
       include: {
         rentalCompany: true,
@@ -98,9 +97,6 @@ rentalCompaniesRoute.openapi(
     if (!vehicle) {
       return c.json({ error: "Vehicle not found" }, 404);
     }
-    return c.json({
-      message: "Get Vehicle by slug",
-      data: vehicle,
-    });
-  }
+    return c.json(vehicle);
+  },
 );
