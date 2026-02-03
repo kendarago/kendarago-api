@@ -1,11 +1,12 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { prisma } from "../lib/prisma";
+import { prisma } from "../../lib/prisma";
+
 import {
   RentalCompaniesSchema,
   RentalCompanySchema,
   RentalCompanySlugSchema,
-} from "../module/rental-company-schema";
-import { VehicleSchema, VehicleSlugSchema } from "../module/vehicle-schema";
+} from "./schema";
+import { VehicleSchema, VehicleSlugSchema } from "../vehicles/schema";
 
 export const rentalCompaniesRoute = new OpenAPIHono();
 
@@ -24,7 +25,7 @@ rentalCompaniesRoute.openapi(
   async (c) => {
     const rentalCompanies = await prisma.rentalCompany.findMany({});
     return c.json(rentalCompanies);
-  }
+  },
 );
 
 rentalCompaniesRoute.openapi(
@@ -57,11 +58,8 @@ rentalCompaniesRoute.openapi(
     if (!rentalCompany) {
       return c.json({ error: "Rental Company not found" }, 404);
     }
-    return c.json({
-      message: "Get Rental Company by slug and its vehicles",
-      data: rentalCompany,
-    });
-  }
+    return c.json(rentalCompany);
+  },
 );
 
 rentalCompaniesRoute.openapi(
@@ -88,7 +86,9 @@ rentalCompaniesRoute.openapi(
     const vehicle = await prisma.vehicle.findUnique({
       where: {
         slug: vehicleSlug,
-        rentalCompanySlug: rentalCompanySlug,
+        rentalCompany: {
+          slug: rentalCompanySlug,
+        },
       },
       include: {
         rentalCompany: true,
@@ -98,9 +98,6 @@ rentalCompaniesRoute.openapi(
     if (!vehicle) {
       return c.json({ error: "Vehicle not found" }, 404);
     }
-    return c.json({
-      message: "Get Vehicle by slug",
-      data: vehicle,
-    });
-  }
+    return c.json(vehicle);
+  },
 );

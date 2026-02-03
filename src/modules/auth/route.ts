@@ -1,21 +1,19 @@
 import { createRoute } from "@hono/zod-openapi";
 import { OpenAPIHono } from "@hono/zod-openapi";
-
-import { PrivateUserSchema } from "../module/user-schema";
 import {
   AuthHeaderSchema,
   AuthSigninSchema,
   AuthSigninSuccessSchema,
   AuthSignupSchema,
-} from "../module/auth-schema";
-
-import { prisma } from "../lib/prisma";
-import { hashPassword, verifyPassword } from "../lib/password";
-import { signToken } from "../lib/token";
-import { checkAuthorized } from "../middleware/middleware";
+} from "./schema";
+import { PrivateUserSchema } from "../user/schema";
+import { prisma } from "../../lib/prisma";
+import { hashPassword, verifyPassword } from "../../lib/password";
+import { signToken } from "../../lib/token";
+import { checkAuthorized } from "./middleware";
 
 export const authRoute = new OpenAPIHono();
-// SIGNUP
+
 authRoute.openapi(
   createRoute({
     method: "post",
@@ -62,7 +60,6 @@ authRoute.openapi(
   },
 );
 
-// SIGNIN
 authRoute.openapi(
   createRoute({
     method: "post",

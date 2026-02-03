@@ -1,5 +1,6 @@
 import { z } from "@hono/zod-openapi";
-import { RentalCompanySchema } from "./rental-company-schema";
+
+import { RentalCompanySchema } from "../rental-companies/schema";
 
 export const VehicleSchema = z.object({
   id: z.string(),
@@ -8,12 +9,12 @@ export const VehicleSchema = z.object({
   fuelType: z.string(),
   transmission: z.string(),
   engineCapacity: z.string(),
-  imageUrl: z.string().optional(),
+  imageUrl: z.string().optional().nullable(),
   year: z.number(),
   pricePerDay: z.number(),
   seatCapacity: z.number(),
   stock: z.number(),
-  rentalCompanySlug: z.string(),
+  rentalCompanyId: z.string(),
   rentalCompany: RentalCompanySchema.optional(),
   vehicleTypeSlug: z.string(),
   createdAt: z.date(),
