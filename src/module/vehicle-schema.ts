@@ -8,7 +8,7 @@ export const VehicleSchema = z.object({
   fuelType: z.string(),
   transmission: z.string(),
   engineCapacity: z.string(),
-  imageUrl: z.string().optional(),
+  imageUrl: z.string().optional().nullable(),
   year: z.number(),
   pricePerDay: z.number(),
   seatCapacity: z.number(),

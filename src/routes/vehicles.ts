@@ -48,13 +48,7 @@ vehiclesRoute.openapi(
         rentalCompany: true,
       },
     });
-    return c.json(
-      vehicles.map((v) => ({
-        ...v,
-        imageUrl: v.imageUrl ?? undefined,
-      })),
-      200,
-    );
+    return c.json(vehicles);
   },
 );
 
@@ -80,6 +74,9 @@ vehiclesRoute.openapi(
 
     const vehicle = await prisma.vehicle.findUnique({
       where: { id },
+      include: {
+        rentalCompany: true,
+      },
     });
 
     if (!vehicle) {

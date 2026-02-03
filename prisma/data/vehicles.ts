@@ -1,7 +1,7 @@
 export type Vehicle = {
   rentalCompanyId: string;
   engineCapacity: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
   brand: string;
   name: string;
   seatCapacity: number;
