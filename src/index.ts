@@ -3,19 +3,19 @@ import { OpenAPIHono } from "@hono/zod-openapi";
 import { logger } from "hono/logger";
 import { cors } from "hono/cors";
 
-import { rentalCompaniesRoute } from "./routes/rental-companies";
-import { vehiclesRoute } from "./routes/vehicles";
-import { userRoute } from "./routes/user";
-import { authRoute } from "./routes/auth";
-import { bookingsRoute } from "./routes/bookings";
+import { rentalCompaniesRoute } from "./modules/rental-companies/route";
+import { vehiclesRoute } from "./modules/vehicles/route";
+import { userRoute } from "./modules/user/route";
+import { authRoute } from "./modules/auth/route";
+import { bookingsRoute } from "./modules/bookings/route";
 
 const app = new OpenAPIHono();
 
 app.use("*", logger());
 app.use("*", cors());
 
-app.route("/vehicles", vehiclesRoute);
 app.route("/rental-companies", rentalCompaniesRoute);
+app.route("/vehicles", vehiclesRoute);
 app.route("/users", userRoute);
 app.route("/auth", authRoute);
 app.route("/bookings", bookingsRoute);

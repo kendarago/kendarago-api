@@ -1,8 +1,8 @@
 import { z } from "@hono/zod-openapi";
 
 export const AuthSignupSchema = z.object({
-  fullName: z.string(),
   email: z.string(),
+  fullName: z.string(),
   password: z.string(),
   phoneNumber: z.string(),
 });

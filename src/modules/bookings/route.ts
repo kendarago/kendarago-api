@@ -1,12 +1,12 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { prisma } from "../lib/prisma";
-import { checkAuthorized } from "../middleware/middleware";
-import { AuthHeaderSchema } from "../module/auth-schema";
+import { AuthHeaderSchema } from "../auth/schema";
 import {
   BookingCreateSchema,
-  BookingWithRelationsSchema,
   BookingsListSchema,
-} from "../module/booking-schema";
+  BookingWithRelationsSchema,
+} from "./schema";
+import { checkAuthorized } from "../auth/middleware";
+import { prisma } from "../../lib/prisma";
 
 export const bookingsRoute = new OpenAPIHono();
 

@@ -1,11 +1,12 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { prisma } from "../lib/prisma";
+import { prisma } from "../../lib/prisma";
+
 import {
   RentalCompaniesSchema,
   RentalCompanySchema,
   RentalCompanySlugSchema,
-} from "../module/rental-company-schema";
-import { VehicleSchema, VehicleSlugSchema } from "../module/vehicle-schema";
+} from "./schema";
+import { VehicleSchema, VehicleSlugSchema } from "../vehicles/schema";
 
 export const rentalCompaniesRoute = new OpenAPIHono();
 
