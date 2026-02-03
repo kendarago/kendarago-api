@@ -13,7 +13,7 @@ export const VehicleSchema = z.object({
   pricePerDay: z.number(),
   seatCapacity: z.number(),
   stock: z.number(),
-  rentalCompanySlug: z.string(),
+  rentalCompanyId: z.string(),
   rentalCompany: RentalCompanySchema.optional(),
   vehicleTypeSlug: z.string(),
   createdAt: z.date(),
