@@ -120,24 +120,3 @@ bun dev
 ```
 
 Open <http://localhost:3000>.
-
-## Production
-
-Make sure the `DATABASE_URL` is configured in `.env` file for usage with Docker Compose.
-
-Build the Docker image:
-
-```sh
-bun docker:build
-# docker compose up -d --build
-```
-
-If only run the Docker container:
-
-```sh
-bun docker:up
-# docker compose up -d
-
-```
-
-Open <http://localhost:3000>.
