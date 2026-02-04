@@ -18,6 +18,15 @@ export const dataRentalCompanies: RentalCompanies[] = [
     contact: "6282332473454",
   },
   {
+    id: "cmkmoh33y0000zcvh3rygvcga",
+    name: "TransGo",
+    address:
+      "Jl. Gatot Subroto No.18-20 8, RT.8/RW.2, Kuningan, Jakarta Selatan, DKI Jakarta",
+    city: "Jakarta",
+    operatingHours: "06:30 - 21:00",
+    contact: "6285718495924",
+  },
+  {
     id: "cmkmoh34q0001zcvhxzqgvcga",
     name: "Rentcang",
     address: "Jl. Juwingan No.96, Gubeng, Surabaya, Jawa Timur",
