@@ -36,4 +36,5 @@ export const VehiclesSearchSchema = z.object({
   q: z.string().optional(),
   category: z.string().optional(),
   available: z.string().optional(),
+  city: z.string().optional(),
 });
