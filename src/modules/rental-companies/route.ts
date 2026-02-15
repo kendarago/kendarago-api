@@ -1,4 +1,4 @@
-import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
+import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
 import { prisma } from "../../lib/prisma";
 
 import {
@@ -9,6 +9,33 @@ import {
 import { VehicleSchema, VehicleSlugSchema } from "../vehicles/schema";
 
 export const rentalCompaniesRoute = new OpenAPIHono();
+
+// Get distinct cities
+rentalCompaniesRoute.openapi(
+  createRoute({
+    method: "get",
+    path: "/cities",
+    responses: {
+      200: {
+        content: {
+          "application/json": {
+            schema: z.array(z.string()),
+          },
+        },
+        description: "Get all distinct cities from rental companies",
+      },
+    },
+  }),
+  async (c) => {
+    const companies = await prisma.rentalCompany.findMany({
+      select: { city: true },
+      distinct: ["city"],
+      orderBy: { city: "asc" },
+    });
+    const cities = companies.map((c) => c.city);
+    return c.json(cities);
+  },
+);
 
 rentalCompaniesRoute.openapi(
   createRoute({

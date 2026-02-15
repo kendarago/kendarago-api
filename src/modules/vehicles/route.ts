@@ -25,7 +25,7 @@ vehiclesRoute.openapi(
     },
   }),
   async (c) => {
-    const { q, category, available } = c.req.query();
+    const { q, category, available, city } = c.req.query();
     const vehicles = await prisma.vehicle.findMany({
       where: {
         name: q
@@ -42,6 +42,14 @@ vehiclesRoute.openapi(
         ...(available === "true" && {
           stock: {
             gt: 0,
+          },
+        }),
+        ...(city && {
+          rentalCompany: {
+            city: {
+              equals: city,
+              mode: "insensitive",
+            },
           },
         }),
       },
