@@ -46,6 +46,33 @@ export const BookingWithRelationsSchema = BookingSchema.extend({
   }),
 });
 
+export const BookingDetailSchema = BookingSchema.extend({
+  vehicle: z.object({
+    id: z.string(),
+    name: z.string(),
+    brand: z.string(),
+    imageUrl: z.string().nullable(),
+    transmission: z.string(),
+    seatCapacity: z.number(),
+    engineCapacity: z.string(),
+    pricePerDay: z.number(),
+    rentalCompany: z.object({
+      id: z.string(),
+      name: z.string(),
+      address: z.string(),
+      city: z.string(),
+      operatingHours: z.string(),
+      contact: z.string(),
+    }),
+  }),
+  user: z.object({
+    id: z.string(),
+    fullName: z.string(),
+    email: z.string(),
+    phoneNumber: z.string(),
+  }),
+});
+
 export const BookingsListSchema = z.array(BookingWithRelationsSchema);
 
 export type BookingCreate = z.infer<typeof BookingCreateSchema>;
