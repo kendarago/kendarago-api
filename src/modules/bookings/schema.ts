@@ -75,5 +75,19 @@ export const BookingDetailSchema = BookingSchema.extend({
 
 export const BookingsListSchema = z.array(BookingWithRelationsSchema);
 
+export const BookingStatusFilterSchema = z.object({
+  status: z
+    .enum(["PENDING", "CONFIRMED", "CANCELLED", "COMPLETED"])
+    .optional(),
+});
+
+export const BookingIdParamSchema = z.object({
+  id: z.string(),
+});
+
+export const BookingUpdateStatusSchema = z.object({
+  status: z.enum(["CONFIRMED", "CANCELLED", "COMPLETED"]),
+});
+
 export type BookingCreate = z.infer<typeof BookingCreateSchema>;
 export type Booking = z.infer<typeof BookingSchema>;

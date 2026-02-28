@@ -1,11 +1,14 @@
 import { prisma } from "../src/lib/prisma";
 import createSlug from "../src/lib/slug";
+import { hashPassword } from "../src/lib/password";
 
 import { dataRentalCompanies } from "./data/rental-companies";
 import { dataVehicleTypes } from "./data/vehicle-types";
 import { dataVehicles } from "./data/vehicles";
 
 async function main() {
+  const defaultProviderPassword = "password123";
+
   for (const seedRentalCompany of dataRentalCompanies) {
     const slug = createSlug(seedRentalCompany.name);
 
@@ -18,6 +21,32 @@ async function main() {
       },
     });
     console.log(`🏬 Rental Companies: ${rentalCompany.name}`);
+
+    const providerEmail = `${slug}@gmail.com`;
+
+    await prisma.user.upsert({
+      where: { email: providerEmail },
+      update: {
+        role: "PROVIDER",
+        rentalCompanyId: rentalCompany.id,
+      },
+      create: {
+        email: providerEmail,
+        fullName: `${rentalCompany.name} (Provider)`,
+        phoneNumber: rentalCompany.contact,
+        role: "PROVIDER",
+        rentalCompanyId: rentalCompany.id,
+        password: {
+          create: {
+            hash: await hashPassword(defaultProviderPassword),
+          },
+        },
+      },
+    });
+
+    console.log(
+      `👤 Provider User: ${providerEmail} / ${defaultProviderPassword} (company: ${rentalCompany.name})`,
+    );
   }
 
   for (const seedVehicleType of dataVehicleTypes) {
