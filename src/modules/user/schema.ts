@@ -9,7 +9,10 @@ export const UserSchema = z.object({
   updatedAt: z.date(),
 });
 
-export const PrivateUserSchema = UserSchema;
+export const PrivateUserSchema = UserSchema.extend({
+  role: z.enum(["RENTER", "PROVIDER"]),
+  rentalCompanyId: z.string().nullable(),
+});
 
 export const PublicUserSchema = UserSchema.omit({
   email: true,

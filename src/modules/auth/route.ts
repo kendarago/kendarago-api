@@ -4,6 +4,7 @@ import {
   AuthHeaderSchema,
   AuthSigninSchema,
   AuthSigninSuccessSchema,
+  AuthSignupProviderSchema,
   AuthSignupSchema,
 } from "./schema";
 import { PrivateUserSchema } from "../user/schema";
@@ -11,6 +12,7 @@ import { prisma } from "../../lib/prisma";
 import { hashPassword, verifyPassword } from "../../lib/password";
 import { signToken } from "../../lib/token";
 import { checkAuthorized } from "./middleware";
+import createSlug from "../../lib/slug";
 
 export const authRoute = new OpenAPIHono();
 
@@ -53,6 +55,69 @@ authRoute.openapi(
       return c.json(
         {
           message: "Failed to Sign Up",
+        },
+        400,
+      );
+    }
+  },
+);
+
+authRoute.openapi(
+  createRoute({
+    method: "post",
+    path: "/signup/provider",
+    request: {
+      body: {
+        content: { "application/json": { schema: AuthSignupProviderSchema } },
+      },
+    },
+    responses: {
+      201: {
+        content: { "application/json": { schema: PrivateUserSchema } },
+        description: "Provider signup success",
+      },
+      400: {
+        description: "Failed to sign up provider",
+      },
+    },
+  }),
+  async (c) => {
+    const body = c.req.valid("json");
+
+    try {
+      const user = await prisma.$transaction(async (tx) => {
+        const rentalCompany = await tx.rentalCompany.create({
+          data: {
+            slug: createSlug(body.companyName),
+            name: body.companyName,
+            address: body.address,
+            city: body.city,
+            operatingHours: body.operatingHours,
+            contact: body.contact,
+          },
+        });
+
+        return tx.user.create({
+          data: {
+            email: body.email,
+            fullName: body.fullName,
+            phoneNumber: body.phoneNumber,
+            role: "PROVIDER",
+            rentalCompanyId: rentalCompany.id,
+            password: {
+              create: {
+                hash: await hashPassword(body.password),
+              },
+            },
+          },
+        });
+      });
+
+      return c.json(user, 201);
+    } catch (error) {
+      return c.json(
+        {
+          message: "Failed to sign up provider",
         },
         400,
       );

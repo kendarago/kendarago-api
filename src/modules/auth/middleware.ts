@@ -47,3 +47,18 @@ export const checkAuthorized = createMiddleware<Env>(async (c, next) => {
     return c.json({ message: "Failed to check authorized user" }, 401);
   }
 });
+
+export const checkRole = (role: "RENTER" | "PROVIDER") =>
+  createMiddleware<Env>(async (c, next) => {
+    const user = c.get("user");
+
+    if (!user) {
+      return c.json({ message: "Unauthorized" }, 401);
+    }
+
+    if (user.role !== role) {
+      return c.json({ message: "Forbidden" }, 403);
+    }
+
+    await next();
+  });
